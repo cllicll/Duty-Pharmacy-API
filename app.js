@@ -36,6 +36,7 @@ app.get('/:city', async (req, res) => {
             $('figure').each(function (i, elem) {
                 datas[i] = {
                     city: city.charAt(0).toUpperCase() + city.slice(1),
+                    town: $(this).find('div[class=title] h3 a span').text().split('(')[1],
                     name: $(this).find('div[class=title] h3 a span').text(),
                     address: $(this)
                         .find('figure figcaption p')
