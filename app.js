@@ -24,7 +24,7 @@ const server = new ApolloServer({
 
 const app = express();
 
-app.get('/:city', async (req, res) => {
+app.get('/get/:city', async (req, res) => {
     var city = req.params.city;
 
     var datas = [];
@@ -54,7 +54,7 @@ app.get('/:city', async (req, res) => {
     res.send(datas);
 });
 
-app.get('/:city/:town', async (req, res) => {
+app.get('/get/:city/:town', async (req, res) => {
     var city = req.params.city;
     var town = req.params.town;
 
