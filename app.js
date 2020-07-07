@@ -14,8 +14,8 @@ const server = new ApolloServer({
     resolvers,
     context: {
         API_URI,
-		fetch,
-		cheerio,
+        fetch,
+        cheerio,
     },
     introspection: true,
     playground: true,
