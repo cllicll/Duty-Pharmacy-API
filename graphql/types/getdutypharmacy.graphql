@@ -1,5 +1,5 @@
 type Query {
-    getdutypharmacy(city: String!, town: String!): [GetDutyPharmacy!]!
+    getDutyPharmacy(city: String!, town: String!): [GetDutyPharmacy!]!
 }
 
 type GetDutyPharmacy {

@@ -1,5 +1,5 @@
 const Query = {
-    getdutypharmacy: async (parent, args, { API_URI, fetch, cheerio }) => {
+    getDutyPharmacy: async (parent, args, { API_URI, fetch, cheerio }) => {
         var datas = [];
         await fetch(API_URI.replace('{0}', args.city).replace('{1}', args.town))
             .then((response) => response.text())
