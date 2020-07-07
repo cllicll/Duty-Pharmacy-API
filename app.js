@@ -1,6 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
+const slugify = require('slugify');
 
 const { ApolloServer } = require('apollo-server-express');
 const { importSchema } = require('graphql-import');
@@ -15,8 +16,10 @@ const server = new ApolloServer({
     resolvers,
     context: {
         API_URI,
+        API_CITY_URI,
         fetch,
         cheerio,
+        slugify,
     },
     introspection: true,
     playground: true,
@@ -28,7 +31,7 @@ app.get('/get/:city', async (req, res) => {
     var city = req.params.city;
 
     var datas = [];
-    await fetch(API_CITY_URI.replace('{0}', city))
+    await fetch(API_CITY_URI.replace('{0}', slugify(city)))
         .then((response) => response.text())
         .then((body) => {
             const $ = cheerio.load(body);
@@ -36,8 +39,14 @@ app.get('/get/:city', async (req, res) => {
             $('figure').each(function (i, elem) {
                 datas[i] = {
                     city: city.charAt(0).toUpperCase() + city.slice(1),
-                    town: $(this).find('div[class=title] h3 a span').text().match(/(.*) \(([^)]+)\)/)[2],
-                    name: $(this).find('div[class=title] h3 a span').text().match(/(.*) \(([^)]+)\)/)[1],
+                    town: $(this)
+                        .find('div[class=title] h3 a span')
+                        .text()
+                        .match(/(.*) \(([^)]+)\)/)[2],
+                    name: $(this)
+                        .find('div[class=title] h3 a span')
+                        .text()
+                        .match(/(.*) \(([^)]+)\)/)[1],
                     address: $(this)
                         .find('figure figcaption p')
                         .first()
@@ -59,7 +68,7 @@ app.get('/get/:city/:town', async (req, res) => {
     var town = req.params.town;
 
     var datas = [];
-    await fetch(API_URI.replace('{0}', city).replace('{1}', town))
+    await fetch(API_URI.replace('{0}', slugify(city)).replace('{1}', slugify(town)))
         .then((response) => response.text())
         .then((body) => {
             const $ = cheerio.load(body);
@@ -67,8 +76,14 @@ app.get('/get/:city/:town', async (req, res) => {
             $('figure').each(function (i, elem) {
                 datas[i] = {
                     city: city.charAt(0).toUpperCase() + city.slice(1),
-                    town: $(this).find('div[class=title] h3 a span').text().match(/(.*) \(([^)]+)\)/)[2],
-                    name: $(this).find('div[class=title] h3 a span').text().match(/(.*) \(([^)]+)\)/)[1],
+                    town: $(this)
+                        .find('div[class=title] h3 a span')
+                        .text()
+                        .match(/(.*) \(([^)]+)\)/)[2],
+                    name: $(this)
+                        .find('div[class=title] h3 a span')
+                        .text()
+                        .match(/(.*) \(([^)]+)\)/)[1],
                     address: $(this)
                         .find('figure figcaption p')
                         .first()
