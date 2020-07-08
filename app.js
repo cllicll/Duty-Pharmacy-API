@@ -48,12 +48,12 @@ app.get('/get/:city', async (req, res) => {
                         .text()
                         .match(/(.*) \(([^)]+)\)/)[1],
                     address: $(this)
-                        .find('figure figcaption p')
+                        .find('figcaption p')
                         .first()
                         .text()
                         .split('Adres: ')[1],
                     phone: $(this)
-                        .find('figure figcaption p')
+                        .find('figcaption p')
                         .last()
                         .text()
                         .split('Telefon: ')[1],
@@ -85,12 +85,12 @@ app.get('/get/:city/:town', async (req, res) => {
                         .text()
                         .match(/(.*) \(([^)]+)\)/)[1],
                     address: $(this)
-                        .find('figure figcaption p')
+                        .find('figcaption p')
                         .first()
                         .text()
                         .split('Adres: ')[1],
                     phone: $(this)
-                        .find('figure figcaption p')
+                        .find('figcaption p')
                         .last()
                         .text()
                         .split('Telefon: ')[1],
