@@ -6,16 +6,13 @@ Demo: http://dutypharmacyapi.herokuapp.com/
 
 ## Run
 
-First you'll need a TMDb API key you should get that key on [here](https://developers.themoviedb.org/3)
-
-Then:
-
 1.  `git clone` this repo
 2.  `cd duty-pharmacy-api`
 3.  `npm install`
 5.  `npm start`
 
 ### GraphQL
+
 This will start the GraphQL server at `http://localhost:4000/` with the GraphQL endpoint at `/graphql` 
 
 ### REST
