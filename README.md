@@ -2,7 +2,7 @@
 
 A simple Node.JS server for exposing a GraphQL and REST API of Duty Pharmacy on Turkey
 
-Rest API Demo: http://dutypharmacyapi.herokuapp.com/get/kayseri/talas
+Demo: http://dutypharmacyapi.herokuapp.com/
 
 ## Run
 
